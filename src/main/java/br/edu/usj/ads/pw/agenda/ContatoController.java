@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 
 
 
@@ -27,7 +29,16 @@ public class ContatoController {
     return modelAndView;
 
     }
+        
+    @GetMapping(value="/cadastrar")
+    public ModelAndView getCadastrar() {
 
+        ModelAndView modelAndView = new ModelAndView("formulario");
+        return  modelAndView;
+        
+        
+    }
+    
     @PostMapping(value="/cadastro")
     public String postCadastro(Contato contatoNovo){
 
@@ -36,16 +47,16 @@ public class ContatoController {
 
         return "redirect:/";
     }
-        
-        @GetMapping(value="/cadastrar")
-        public ModelAndView getCadastrar() {
+    @GetMapping(value="/detalhes/{id}")
+    public ModelAndView getDetalhes(@PathVariable Long id) {
+        Contato contato = contatoRepository.findById(id).get();
 
-            ModelAndView modelAndView = new ModelAndView("formulario");
-            return  modelAndView;
-        
-        
-        }
+        ModelAndView modelAndView = new ModelAndView("detalhes");
+        modelAndView.addObject("dados_contato", contato);
 
+        return modelAndView;
+    }
+    
 
 }
 
