@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 
+
 @Controller
 public class ContatoController {
 
@@ -28,18 +29,24 @@ public class ContatoController {
     }
 
     @PostMapping(value="/cadastro")
-    public String postCadastro(String nome, String tipo, String telefone, String email ){
-        Contato contatoNovo = new Contato();
-        contatoNovo.setId(null);
-        contatoNovo.setNome(nome);
-        contatoNovo.setTipo(tipo);
-        contatoNovo.setTelefone(telefone);
-        contatoNovo.setEmail(email);
+    public String postCadastro(Contato contatoNovo){
 
         //gravanod no banco 
         contatoRepository.save(contatoNovo);
 
         return "redirect:/";
     }
+        
+        @GetMapping(value="/cadastrar")
+        public ModelAndView getCadastrar() {
+
+            ModelAndView modelAndView = new ModelAndView("formulario");
+            return  modelAndView;
+        
+        
+        }
+
 
 }
+
+
