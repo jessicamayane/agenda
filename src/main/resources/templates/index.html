@@ -10,11 +10,13 @@
 <body>
     <h1>Agenda de contatos</h1>
     <a href="/cadastrar">Novo contato</a>
-
+    
     <div>
         <ul>
             <li th:each="item : ${lista_contatos}">
                 <a th:href="@{/detalhes/{id}(id=${item.id})}" th:text="${item.nome}"></a>
+                - 
+                <a th:href="@{/deletar/{id}(id=${item.id})}">Apagar</a>
             </li> 
         </ul>
     </div>

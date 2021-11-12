@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
+
 @Controller
 public class ContatoController {
 
@@ -56,6 +57,14 @@ public class ContatoController {
 
         return modelAndView;
     }
+
+    @GetMapping(value="/deletar/{id}")
+    public String getDeletar(@PathVariable Long id ) {
+        contatoRepository.deleteById(id);
+        
+        return "redirect:/";
+    }
+    
     
 
 }
