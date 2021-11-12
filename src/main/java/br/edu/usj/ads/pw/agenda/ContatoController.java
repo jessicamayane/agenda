@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
+
 @Controller
 public class ContatoController {
 
@@ -64,6 +65,17 @@ public class ContatoController {
         
         return "redirect:/";
     }
+
+    @GetMapping(value="/editar/{id}")
+    public ModelAndView getEditar(@PathVariable Long id) {
+        //ler registro do banco
+        Contato contato = contatoRepository.findById(id).get();
+        ModelAndView modelAndView = new ModelAndView("formulario_edicao");
+        modelAndView.addObject("dados_contato", contato);
+        
+        return modelAndView;
+    }
+    
     
     
 
