@@ -34,8 +34,10 @@ public class ContatoController {
         
     @GetMapping(value="/cadastrar")
     public ModelAndView getCadastrar() {
-
+        //Contato contato = new Contato();
         ModelAndView modelAndView = new ModelAndView("formulario");
+        
+        //modelAndView.addObject("dados_contato", contato);
         return  modelAndView;
         
         
@@ -70,7 +72,9 @@ public class ContatoController {
     public ModelAndView getEditar(@PathVariable Long id) {
         //ler registro do banco
         Contato contato = contatoRepository.findById(id).get();
-        ModelAndView modelAndView = new ModelAndView("formulario_edicao");
+
+        ModelAndView modelAndView = new ModelAndView("formulario");
+
         modelAndView.addObject("dados_contato", contato);
         
         return modelAndView;
