@@ -34,10 +34,10 @@ public class ContatoController {
         
     @GetMapping(value="/cadastrar")
     public ModelAndView getCadastrar() {
-        //Contato contato = new Contato();
+        Contato contato = new Contato();
         ModelAndView modelAndView = new ModelAndView("formulario");
         
-        //modelAndView.addObject("dados_contato", contato);
+        modelAndView.addObject("dados_contato", contato);
         return  modelAndView;
         
         
